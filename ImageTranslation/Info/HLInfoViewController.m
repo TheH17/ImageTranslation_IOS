@@ -11,6 +11,7 @@
 #import "hitViewController.h"
 #import "HLInfoCellData.h"
 #import "downViewController.h"
+#import "testViewController.h"
 
 @interface HLInfoViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -65,6 +66,12 @@
 }
 - (IBAction)t2:(id)sender {
     [self.navigationController pushViewController:[downViewController new] animated:YES];
+}
+
+- (IBAction)t3:(id)sender {
+    testViewController *c = [testViewController new];
+    c.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:c animated:YES];
 }
 
 - (void)loadSubviews {

@@ -13,6 +13,8 @@
 		201A5EEC207B416A00022807 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 201A5EEB207B416A00022807 /* Assets.xcassets */; };
 		201A5EEF207B42D000022807 /* HLRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 201A5EEE207B42D000022807 /* HLRegisterViewController.m */; };
 		201A5EF2207B609D00022807 /* HLImageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 201A5EF1207B609D00022807 /* HLImageTool.m */; };
+		2035B21F20848A12008111EC /* testViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2035B21D20848A12008111EC /* testViewController.m */; };
+		2035B22020848A12008111EC /* testViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2035B21E20848A12008111EC /* testViewController.xib */; };
 		2052562E207282170004EA7A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2052562D207282170004EA7A /* AppDelegate.m */; };
 		20525639207282170004EA7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20525637207282170004EA7A /* LaunchScreen.storyboard */; };
 		2052563C207282170004EA7A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2052563B207282170004EA7A /* main.m */; };
@@ -67,6 +69,9 @@
 		201A5EEE207B42D000022807 /* HLRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLRegisterViewController.m; sourceTree = "<group>"; };
 		201A5EF0207B609D00022807 /* HLImageTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLImageTool.h; sourceTree = "<group>"; };
 		201A5EF1207B609D00022807 /* HLImageTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLImageTool.m; sourceTree = "<group>"; };
+		2035B21C20848A12008111EC /* testViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testViewController.h; sourceTree = "<group>"; };
+		2035B21D20848A12008111EC /* testViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testViewController.m; sourceTree = "<group>"; };
+		2035B21E20848A12008111EC /* testViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = testViewController.xib; sourceTree = "<group>"; };
 		20525629207282170004EA7A /* ImageTranslation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageTranslation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2052562C207282170004EA7A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2052562D207282170004EA7A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -152,6 +157,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2035B21B20848A01008111EC /* test */ = {
+			isa = PBXGroup;
+			children = (
+				2035B21C20848A12008111EC /* testViewController.h */,
+				2035B21D20848A12008111EC /* testViewController.m */,
+				2035B21E20848A12008111EC /* testViewController.xib */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
 		20525620207282160004EA7A = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +199,7 @@
 				20525637207282170004EA7A /* LaunchScreen.storyboard */,
 				2052563A207282170004EA7A /* Info.plist */,
 				2052563B207282170004EA7A /* main.m */,
+				2035B21B20848A01008111EC /* test */,
 				208A54E52078F75100DD6B9E /* Relate */,
 				208A54E12078F72800DD6B9E /* Info */,
 				208A54DD2078F6FD00DD6B9E /* inference */,
@@ -406,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2052565F2072841B0004EA7A /* input_sample.jpg in Resources */,
+				2035B22020848A12008111EC /* testViewController.xib in Resources */,
 				20680099207D27C500C2930D /* downViewController.xib in Resources */,
 				20680094207D274500C2930D /* hitViewController.xib in Resources */,
 				201A5EEC207B416A00022807 /* Assets.xcassets in Resources */,
@@ -500,6 +517,7 @@
 				208A54D52078EB8F00DD6B9E /* HLLoginViewController.m in Sources */,
 				2052562E207282170004EA7A /* AppDelegate.m in Sources */,
 				20C968992079E452004B7A65 /* HLInferenceTool.m in Sources */,
+				2035B21F20848A12008111EC /* testViewController.m in Sources */,
 				208A54EB2079038200DD6B9E /* HLInfoCellData.m in Sources */,
 				201A5EF2207B609D00022807 /* HLImageTool.m in Sources */,
 				20DD662B207930260025F75F /* MainViewController.m in Sources */,
