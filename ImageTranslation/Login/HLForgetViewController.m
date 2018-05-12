@@ -1,39 +1,42 @@
 //
-//  HLLoginViewController.m
+//  HLForgetViewController.m
 //  ImageTranslation
 //
-//  Created by hueyLee on 07/04/2018.
+//  Created by hueyLee on 2018/5/12.
 //  Copyright © 2018 李浩鹏. All rights reserved.
 //
 
-#import "HLLoginViewController.h"
+#import "HLForgetViewController.h"
 #import <PureLayout/PureLayout.h>
 #import <AFNetworking/AFNetworking.h>
-#import "HLRegisterViewController.h"
-#import "HLForgetViewController.h"
-#import "HLLoginTool.h"
-#import "HLUser.h"
-#import "HLUserTool.h"
 
-@interface HLLoginViewController ()
+@interface HLForgetViewController ()
 
 @property (nonatomic, strong) UILabel *label;
 
 @property (nonatomic, strong) UITextField *name;
 
+@property (nonatomic, strong) UITextField *check;
+
 @property (nonatomic, strong) UITextField *pass;
+
+@property (nonatomic, strong) UITextField *pass1;
 
 @property (nonatomic, strong) UIButton *btn;
 
+@property (nonatomic, strong) UIButton *cBtn;
+
 @property (nonatomic, strong) UIButton *rBtn;
 
-@property (nonatomic, strong) UIImageView *seV;
+@property (nonatomic, strong) UIView *l1;
 
-@property (nonatomic, strong) UIButton *fBtn;
+@property (nonatomic, strong) UIView *l2;
+
+@property (nonatomic, strong) UIView *l3;
 
 @end
 
-@implementation HLLoginViewController
+@implementation HLForgetViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,7 +55,7 @@
 - (void)loadSubViews {
     _label = ({
         UILabel *label = [UILabel new];
-        label.text = @"欢迎使用图像翻译";
+        label.text = @"请重新设置密码";
         label.font = [UIFont systemFontOfSize:30];
         label.textColor = [UIColor blackColor];
         label.textAlignment = NSTextAlignmentCenter;
@@ -64,29 +67,44 @@
         UITextField *textField = [[UITextField alloc] init];
         textField.font = [UIFont systemFontOfSize:20];
         textField.textColor = [UIColor blackColor];
-        textField.layer.borderWidth = 1;
-        textField.layer.borderColor = [UIColor blackColor].CGColor;
-        textField.layer.cornerRadius = 3;
-        textField.leftViewMode = UITextFieldViewModeAlways;
-        UIImageView *imgv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"user"]];
-        imgv.frame = CGRectMake(10, 10, 30, 30);
-        textField.leftView = imgv;
-        textField.placeholder = @"请输入昵称或手机号";
+        textField.layer.borderWidth = 0;
+        textField.placeholder = @"   请输入手机号";
         textField;
     });
+    
+    _l1 = [UIView new];
+    _l1.backgroundColor = [UIColor grayColor];
+    
+    _check = ({
+        UITextField *textField = [[UITextField alloc] init];
+        textField.font = [UIFont systemFontOfSize:20];
+        textField.textColor = [UIColor blackColor];
+        textField.layer.borderWidth = 0;
+        textField.placeholder = @"   请输入验证码";
+        textField.secureTextEntry = YES;
+        textField;
+    });
+    _l2 = [UIView new];
+    _l2.backgroundColor = [UIColor grayColor];
     
     _pass = ({
         UITextField *textField = [[UITextField alloc] init];
         textField.font = [UIFont systemFontOfSize:20];
         textField.textColor = [UIColor blackColor];
-        textField.layer.borderWidth = 1;
-        textField.layer.borderColor = [UIColor blackColor].CGColor;
-        textField.layer.cornerRadius = 3;
-        textField.leftViewMode = UITextFieldViewModeAlways;
-        UIImageView *imgv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pass"]];
-        imgv.frame = CGRectMake(10, 10, 30, 30);
-        textField.leftView = imgv;
-        textField.placeholder = @"请输入密码";
+        textField.layer.borderWidth = 0;
+        textField.placeholder = @"   请输入新密码";
+        textField.secureTextEntry = YES;
+        textField;
+    });
+    _l3 = [UIView new];
+    _l3.backgroundColor = [UIColor grayColor];
+    
+    _pass1 = ({
+        UITextField *textField = [[UITextField alloc] init];
+        textField.font = [UIFont systemFontOfSize:20];
+        textField.textColor = [UIColor blackColor];
+        textField.layer.borderWidth = 0;
+        textField.placeholder = @"   请再次输入密码";
         textField.secureTextEntry = YES;
         textField;
     });
@@ -94,32 +112,32 @@
     _btn = ({
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setBackgroundColor:[UIColor orangeColor]];
-        [btn setTitle:@"登录" forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+        [btn setTitle:@"确定" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(re) forControlEvents:UIControlEventTouchUpInside];
+        btn.layer.cornerRadius = 5;
+        btn;
+    });
+    _cBtn = ({
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setBackgroundColor:[UIColor orangeColor]];
+        [btn setTitle:@"获取验证码" forState:UIControlStateNormal];
+        [btn setTitle:@"已发送" forState:UIControlStateDisabled];
+        [btn addTarget:self action:@selector(getC) forControlEvents:UIControlEventTouchUpInside];
         btn.layer.cornerRadius = 5;
         btn;
     });
     
     _rBtn = ({
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitle:@"注册账号" forState:UIControlStateNormal];
+        [btn setTitle:@"去登录" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(toRegister) forControlEvents:UIControlEventTouchUpInside];
-        btn.layer.borderWidth = 0;
-        btn;
-    });
-    _seV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"line"]];
-//    _seV.layer.borderWidth = 1;
-    _fBtn = ({
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitle:@"忘记密码" forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(forget) forControlEvents:UIControlEventTouchUpInside];
+        [btn addTarget:self action:@selector(tologin) forControlEvents:UIControlEventTouchUpInside];
         btn.layer.borderWidth = 0;
         btn;
     });
     
-    [@[_label, _name, _pass, _btn, _rBtn,_seV,_fBtn] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    
+    [@[_label, _name, _pass, _pass1, _check, _btn, _rBtn, _l1,_l2,_l3,_cBtn] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.view addSubview:obj];
     }];
 }
@@ -131,35 +149,58 @@
     [_label autoSetDimension:ALDimensionHeight toSize:80];
     
     [_name autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_label withOffset:50];
-    [_name autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:50];
-    [_name autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:50];
+    [_name autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:20];
+    [_name autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:20];
     [_name autoSetDimension:ALDimensionHeight toSize:50];
     
-    [_pass autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_name withOffset:30];
-    [_pass autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:50];
-    [_pass autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:50];
+    [_l1 autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:15];
+    [_l1 autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:15];
+    [_l1 autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_name withOffset:2];
+    [_l1 autoSetDimension:ALDimensionHeight toSize:1];
+    
+    [_check autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_l1 withOffset:2];
+    [_check autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:20];
+    [_check autoSetDimensionsToSize:CGSizeMake(250, 50)];
+    
+    [_cBtn autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:_check withOffset:5];
+    [_cBtn autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:_check withOffset:-5];
+    [_cBtn autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:_check withOffset:20];
+    [_cBtn autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:20];
+    
+    [_l2 autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:15];
+    [_l2 autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:15];
+    [_l2 autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_check withOffset:2];
+    [_l2 autoSetDimension:ALDimensionHeight toSize:1];
+    
+    [_pass autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_l2 withOffset:2];
+    [_pass autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:20];
+    [_pass autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:20];
     [_pass autoSetDimension:ALDimensionHeight toSize:50];
     
-    [_btn autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_pass withOffset:80];
+    [_l3 autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:15];
+    [_l3 autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:15];
+    [_l3 autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_pass withOffset:2];
+    [_l3 autoSetDimension:ALDimensionHeight toSize:1];
+    
+    [_pass1 autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_l3 withOffset:2];
+    [_pass1 autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:20];
+    [_pass1 autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:20];
+    [_pass1 autoSetDimension:ALDimensionHeight toSize:50];
+    
+    [_btn autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_pass1 withOffset:80];
     [_btn autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:50];
     [_btn autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:50];
     [_btn autoSetDimension:ALDimensionHeight toSize:50];
     
-    [_seV autoAlignAxisToSuperviewAxis:ALAxisVertical];
-    [_seV autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:100];
-    [_seV autoSetDimensionsToSize:CGSizeMake(30, 30)];
-    
-    [_rBtn autoAlignAxis:ALAxisHorizontal toSameAxisOfView:_seV];
-    [_rBtn autoPinEdge:ALEdgeRight toEdge:ALEdgeLeft ofView:_seV withOffset:-30];
-    [_rBtn autoSetDimensionsToSize:CGSizeMake(80, 25)];
-    
-    [_fBtn autoAlignAxis:ALAxisHorizontal toSameAxisOfView:_seV];
-    [_fBtn autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:_seV withOffset:30];
-    [_fBtn autoSetDimensionsToSize:CGSizeMake(80, 25)];
+    [_rBtn autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_btn withOffset:20];
+    [_rBtn autoPinEdge:ALEdgeRight toEdge:ALEdgeRight ofView:_btn];
+    [_rBtn autoSetDimensionsToSize:CGSizeMake(160, 25)];
 }
 
 - (void)tap {
     [_name resignFirstResponder];
+    [_check resignFirstResponder];
+    [_pass resignFirstResponder];
     [_pass resignFirstResponder];
 }
 
@@ -181,7 +222,7 @@
     }];
 }
 
-- (void)login {
+- (void)re {
     if ([_name.text isEqualToString:@""] || !_name.text) {
         UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"提示" message:@"用户名不能为空" preferredStyle:UIAlertControllerStyleAlert];
         [vc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil]];
@@ -189,6 +230,11 @@
     }
     if ([_pass.text isEqualToString:@""] || !_pass.text) {
         UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"提示" message:@"密码不能为空" preferredStyle:UIAlertControllerStyleAlert];
+        [vc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil]];
+        [self presentViewController:vc animated:YES completion:nil];
+    }
+    if (![_pass1.text isEqualToString:_pass.text]) {
+        UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"提示" message:@"密码不一致" preferredStyle:UIAlertControllerStyleAlert];
         [vc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil]];
         [self presentViewController:vc animated:YES completion:nil];
     }
@@ -201,21 +247,19 @@
     dict[@"username"] = _name.text;
     dict[@"password"] = _pass.text;
     
-    NSString *url = @"http://47.106.89.134:8080/login";
+    NSString *url = @"http://47.106.89.134:8080/registration";
     
     [manager POST:url parameters:dict progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"status"] isEqualToString:@"ok"]) {
-            HLUser *u = [HLUser userWithName:_name.text phont:@"135****5093" info:@""];
-            [HLUserTool saveUser:u];
-            UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"登录成功" message:responseObject[@"message"] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"密码设置成功，请登录" message:nil preferredStyle:UIAlertControllerStyleAlert];
             [vc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                [HLLoginTool enterAppWithWindow:[UIApplication sharedApplication].delegate.window];
+                [self tologin];
             }]];
             [self presentViewController:vc animated:YES completion:nil];
         }else {
-            UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"登录失败" message:responseObject[@"message"] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"密码设置失败" message:responseObject[@"message"] preferredStyle:UIAlertControllerStyleAlert];
             [vc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil]];
             [self presentViewController:vc animated:YES completion:nil];
         }
@@ -226,14 +270,15 @@
     }];
 }
 
-- (void)forget {
-    HLForgetViewController *vc = [HLForgetViewController new];
+- (void)getC {
+    //    _cBtn.enabled = NO;
+    UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"提示" message:@"您好，短信验证服务错误，请直接设置密码，该错误会在短期内修复" preferredStyle:UIAlertControllerStyleAlert];
+    [vc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil]];
     [self presentViewController:vc animated:YES completion:nil];
 }
 
-- (void)toRegister {
-    HLRegisterViewController *vc = [HLRegisterViewController new];
-    [self presentViewController:vc animated:YES completion:nil];
+- (void)tologin {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -242,13 +287,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

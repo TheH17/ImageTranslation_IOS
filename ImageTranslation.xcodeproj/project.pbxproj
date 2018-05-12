@@ -38,6 +38,7 @@
 		208A54F220790E0600DD6B9E /* HLRelateContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 208A54F120790E0600DD6B9E /* HLRelateContentViewController.m */; };
 		20C968992079E452004B7A65 /* HLInferenceTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C968982079E452004B7A65 /* HLInferenceTool.m */; };
 		20C9689C2079E912004B7A65 /* WorkSpaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C9689B2079E912004B7A65 /* WorkSpaceViewController.m */; };
+		20D84F0220A6D1A300DD6403 /* HLForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D84F0120A6D1A300DD6403 /* HLForgetViewController.m */; };
 		20DD662820792D8A0025F75F /* HLLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DD662720792D8A0025F75F /* HLLoginTool.m */; };
 		20DD662B207930260025F75F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DD662A207930260025F75F /* MainViewController.m */; };
 /* End PBXBuildFile section */
@@ -115,6 +116,8 @@
 		20C968982079E452004B7A65 /* HLInferenceTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLInferenceTool.m; sourceTree = "<group>"; };
 		20C9689A2079E912004B7A65 /* WorkSpaceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkSpaceViewController.h; sourceTree = "<group>"; };
 		20C9689B2079E912004B7A65 /* WorkSpaceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkSpaceViewController.m; sourceTree = "<group>"; };
+		20D84F0020A6D1A300DD6403 /* HLForgetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLForgetViewController.h; sourceTree = "<group>"; };
+		20D84F0120A6D1A300DD6403 /* HLForgetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLForgetViewController.m; sourceTree = "<group>"; };
 		20DD662620792D8A0025F75F /* HLLoginTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLLoginTool.h; sourceTree = "<group>"; };
 		20DD662720792D8A0025F75F /* HLLoginTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLLoginTool.m; sourceTree = "<group>"; };
 		20DD6629207930260025F75F /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -232,6 +235,8 @@
 			children = (
 				208A54D32078EB8F00DD6B9E /* HLLoginViewController.h */,
 				208A54D42078EB8F00DD6B9E /* HLLoginViewController.m */,
+				20D84F0020A6D1A300DD6403 /* HLForgetViewController.h */,
+				20D84F0120A6D1A300DD6403 /* HLForgetViewController.m */,
 				201A5EED207B42D000022807 /* HLRegisterViewController.h */,
 				201A5EEE207B42D000022807 /* HLRegisterViewController.m */,
 				200C72C3207DCE1A00736B48 /* FindViewController.h */,
@@ -514,6 +519,7 @@
 				2052563C207282170004EA7A /* main.m in Sources */,
 				200C72C6207DCE1A00736B48 /* FindViewController.m in Sources */,
 				20DD662820792D8A0025F75F /* HLLoginTool.m in Sources */,
+				20D84F0220A6D1A300DD6403 /* HLForgetViewController.m in Sources */,
 				208A54D52078EB8F00DD6B9E /* HLLoginViewController.m in Sources */,
 				2052562E207282170004EA7A /* AppDelegate.m in Sources */,
 				20C968992079E452004B7A65 /* HLInferenceTool.m in Sources */,
