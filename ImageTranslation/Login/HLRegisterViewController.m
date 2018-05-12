@@ -44,6 +44,12 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self loadSubViews];
     [self layoutUI];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardDidHideNotification object:nil];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
+    tap.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:tap];
 }
 
 - (void)loadSubViews {
@@ -191,6 +197,31 @@
     [_rBtn autoSetDimensionsToSize:CGSizeMake(160, 25)];
 }
 
+- (void)tap {
+    [_name resignFirstResponder];
+    [_check resignFirstResponder];
+    [_pass resignFirstResponder];
+    [_pass resignFirstResponder];
+}
+
+- (void)keyboardShow:(NSNotification *)noti {
+    CGRect rect = [[[noti userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGPoint point = [_btn convertPoint:CGPointZero toView:self.view];
+    if ([UIScreen mainScreen].bounds.size.height - rect.size.height < point.y + 55) {
+        [UIView animateWithDuration:0.5 animations:^{
+            CGRect r = self.view.bounds;
+            r.origin.y = -[UIScreen mainScreen].bounds.size.height+ rect.size.height + point.y + 55;
+            self.view.bounds = r;
+        }];
+    }
+}
+
+- (void)keyboardHide:(NSNotification *)noti {
+    [UIView animateWithDuration:0.5 animations:^{
+        self.view.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    }];
+}
+
 - (void)re {
     if ([_name.text isEqualToString:@""] || !_name.text) {
         UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"提示" message:@"用户名不能为空" preferredStyle:UIAlertControllerStyleAlert];
@@ -240,7 +271,10 @@
 }
 
 - (void)getC {
-    _cBtn.enabled = NO;
+//    _cBtn.enabled = NO;
+    UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"提示" message:@"您好，短信验证服务错误，请直接注册，该错误会在短期内修复" preferredStyle:UIAlertControllerStyleAlert];
+    [vc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)tologin {

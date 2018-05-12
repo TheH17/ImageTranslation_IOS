@@ -51,7 +51,7 @@
     [self.view addSubview:_label];
     _imgV = ({
 //        UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"default"]];
-        UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"input_sample 4"]];
+        UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tt4"]];
         img.layer.borderWidth = 2;
         img.layer.borderColor = [UIColor grayColor].CGColor;
         img.layer.cornerRadius = 5;
@@ -65,7 +65,7 @@
     
     _imgV1 = ({
 //        UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"putputPlace"]];
-        UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"output_sample 5"]];
+        UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"t4"]];
         img.layer.borderWidth = 2;
         img.layer.borderColor = [UIColor grayColor].CGColor;
         img.layer.cornerRadius = 5;

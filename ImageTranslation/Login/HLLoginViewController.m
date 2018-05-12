@@ -40,6 +40,12 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self loadSubViews];
     [self layoutUI];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardDidHideNotification object:nil];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
+    tap.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:tap];
 }
 
 - (void)loadSubViews {
@@ -149,6 +155,29 @@
     [_fBtn autoAlignAxis:ALAxisHorizontal toSameAxisOfView:_seV];
     [_fBtn autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:_seV withOffset:30];
     [_fBtn autoSetDimensionsToSize:CGSizeMake(80, 25)];
+}
+
+- (void)tap {
+    [_name resignFirstResponder];
+    [_pass resignFirstResponder];
+}
+
+- (void)keyboardShow:(NSNotification *)noti {
+    CGRect rect = [[[noti userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGPoint point = [_btn convertPoint:CGPointZero toView:self.view];
+    if ([UIScreen mainScreen].bounds.size.height - rect.size.height < point.y + 55) {
+        [UIView animateWithDuration:0.5 animations:^{
+            CGRect r = self.view.bounds;
+            r.origin.y = -[UIScreen mainScreen].bounds.size.height+ rect.size.height + point.y + 55;
+            self.view.bounds = r;
+        }];
+    }
+}
+
+- (void)keyboardHide:(NSNotification *)noti {
+    [UIView animateWithDuration:0.5 animations:^{
+        self.view.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    }];
 }
 
 - (void)login {
