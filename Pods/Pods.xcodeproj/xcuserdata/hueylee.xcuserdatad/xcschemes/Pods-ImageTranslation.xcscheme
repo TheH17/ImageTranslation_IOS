@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'AF10517DCF945E4FC50D2BED26216EC3'
+               BlueprintIdentifier = 'F84D7C4B5DB07491F1107DDCDEA15851'
                BlueprintName = 'Pods-ImageTranslation'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-ImageTranslation.a'>

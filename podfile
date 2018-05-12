@@ -3,4 +3,5 @@ target 'ImageTranslation' do
 pod 'AFNetworking'
 pod 'PureLayout'
 pod 'SDWebImage'
+pod 'MBProgressHUD'
 end

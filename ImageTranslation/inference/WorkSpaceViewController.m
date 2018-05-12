@@ -9,6 +9,9 @@
 #import "WorkSpaceViewController.h"
 #import <PureLayout/PureLayout.h>
 #import <Photos/Photos.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "HLInferenceTool.h"
+#import "HLResultViewController.h"
 
 @interface WorkSpaceViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
@@ -50,8 +53,7 @@
     });
     [self.view addSubview:_label];
     _imgV = ({
-//        UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"default"]];
-        UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tt4"]];
+        UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"default"]];
         img.layer.borderWidth = 2;
         img.layer.borderColor = [UIColor grayColor].CGColor;
         img.layer.cornerRadius = 5;
@@ -64,14 +66,13 @@
     });
     
     _imgV1 = ({
-//        UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"putputPlace"]];
-        UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"t4"]];
+        UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"putputPlace"]];
         img.layer.borderWidth = 2;
         img.layer.borderColor = [UIColor grayColor].CGColor;
         img.layer.cornerRadius = 5;
         img.clipsToBounds = YES;
         img.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickImage)];
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickRe)];
         [img addGestureRecognizer:tapGesture];
         img.contentMode = UIViewContentModeScaleToFill;
         img;
@@ -124,6 +125,12 @@
     [alert addAction:a2];
     [alert addAction:c];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)clickRe {
+    HLResultViewController *vc = [HLResultViewController new];
+    [vc setImage:_imgV1.image];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)pickImage:(NSInteger)type {
@@ -183,6 +190,20 @@
         UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"提示" message:@"您还没选择图片，请先选择图片" preferredStyle:UIAlertControllerStyleAlert];
         [vc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil]];
         [self presentViewController:vc animated:YES completion:nil];
+    }else {
+        [HLInferenceTool inferenceOnline:_modelName pic:_imgV.image success:^(NSString *status, NSString *message, NSString *imageUrl) {
+            if ([status isEqualToString:@"ok"]) {
+                [self.imgV1 sd_setImageWithURL:[NSURL URLWithString:imageUrl]];
+            }else {
+                UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"转换失败" message:message preferredStyle:UIAlertControllerStyleAlert];
+                [vc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil]];
+                [self presentViewController:vc animated:YES completion:nil];
+            }
+        } failure:^(NSError *error) {
+            UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"网络错误" message:@"网络错误，请重试" preferredStyle:UIAlertControllerStyleAlert];
+            [vc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil]];
+            [self presentViewController:vc animated:YES completion:nil];
+        }];
     }
 }
 

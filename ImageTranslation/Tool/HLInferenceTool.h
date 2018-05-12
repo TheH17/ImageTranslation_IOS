@@ -15,7 +15,7 @@
 
 + (void)downloadMode:(NSString *)name success:(void (^)(NSString *, NSString *))success failure:(void (^)(NSError *))error;
 
-+ (void)inferenceOnline:(NSString *)name pic:(UIImage *)image success:(void (^)(NSString *, NSString *))success failure:(void (^)(NSError *))error;
++ (void)inferenceOnline:(NSString *)name pic:(UIImage *)image success:(void (^)(NSString *, NSString *, NSString*))success failure:(void (^)(NSError *))error;
 
 + (void)inferenceOffline:(NSString *)name pic:(UIImage *)image success:(void (^)(NSString *, NSString *))success failure:(void (^)(NSError *))error;
 

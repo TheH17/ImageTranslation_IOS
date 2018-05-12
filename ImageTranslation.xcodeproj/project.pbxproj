@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		185EC24DC056801197B13971 /* libPods-ImageTranslation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9882775DAC9D5456BD07AA4B /* libPods-ImageTranslation.a */; };
-		200C72C6207DCE1A00736B48 /* FindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 200C72C4207DCE1A00736B48 /* FindViewController.m */; };
-		200C72C7207DCE1A00736B48 /* FindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 200C72C5207DCE1A00736B48 /* FindViewController.xib */; };
 		201A5EEC207B416A00022807 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 201A5EEB207B416A00022807 /* Assets.xcassets */; };
 		201A5EEF207B42D000022807 /* HLRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 201A5EEE207B42D000022807 /* HLRegisterViewController.m */; };
 		201A5EF2207B609D00022807 /* HLImageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 201A5EF1207B609D00022807 /* HLImageTool.m */; };
@@ -39,6 +37,7 @@
 		20C968992079E452004B7A65 /* HLInferenceTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C968982079E452004B7A65 /* HLInferenceTool.m */; };
 		20C9689C2079E912004B7A65 /* WorkSpaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C9689B2079E912004B7A65 /* WorkSpaceViewController.m */; };
 		20D84F0220A6D1A300DD6403 /* HLForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D84F0120A6D1A300DD6403 /* HLForgetViewController.m */; };
+		20D84F0520A7194100DD6403 /* HLResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D84F0420A7194100DD6403 /* HLResultViewController.m */; };
 		20DD662820792D8A0025F75F /* HLLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DD662720792D8A0025F75F /* HLLoginTool.m */; };
 		20DD662B207930260025F75F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DD662A207930260025F75F /* MainViewController.m */; };
 /* End PBXBuildFile section */
@@ -62,9 +61,6 @@
 
 /* Begin PBXFileReference section */
 		0DA1AF159FBA69E9B9F1CA64 /* Pods-ImageTranslation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageTranslation.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageTranslation/Pods-ImageTranslation.release.xcconfig"; sourceTree = "<group>"; };
-		200C72C3207DCE1A00736B48 /* FindViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindViewController.h; sourceTree = "<group>"; };
-		200C72C4207DCE1A00736B48 /* FindViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindViewController.m; sourceTree = "<group>"; };
-		200C72C5207DCE1A00736B48 /* FindViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FindViewController.xib; sourceTree = "<group>"; };
 		201A5EEB207B416A00022807 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		201A5EED207B42D000022807 /* HLRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLRegisterViewController.h; sourceTree = "<group>"; };
 		201A5EEE207B42D000022807 /* HLRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLRegisterViewController.m; sourceTree = "<group>"; };
@@ -118,6 +114,8 @@
 		20C9689B2079E912004B7A65 /* WorkSpaceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkSpaceViewController.m; sourceTree = "<group>"; };
 		20D84F0020A6D1A300DD6403 /* HLForgetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLForgetViewController.h; sourceTree = "<group>"; };
 		20D84F0120A6D1A300DD6403 /* HLForgetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLForgetViewController.m; sourceTree = "<group>"; };
+		20D84F0320A7194100DD6403 /* HLResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLResultViewController.h; sourceTree = "<group>"; };
+		20D84F0420A7194100DD6403 /* HLResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLResultViewController.m; sourceTree = "<group>"; };
 		20DD662620792D8A0025F75F /* HLLoginTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLLoginTool.h; sourceTree = "<group>"; };
 		20DD662720792D8A0025F75F /* HLLoginTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLLoginTool.m; sourceTree = "<group>"; };
 		20DD6629207930260025F75F /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -239,9 +237,6 @@
 				20D84F0120A6D1A300DD6403 /* HLForgetViewController.m */,
 				201A5EED207B42D000022807 /* HLRegisterViewController.h */,
 				201A5EEE207B42D000022807 /* HLRegisterViewController.m */,
-				200C72C3207DCE1A00736B48 /* FindViewController.h */,
-				200C72C4207DCE1A00736B48 /* FindViewController.m */,
-				200C72C5207DCE1A00736B48 /* FindViewController.xib */,
 				208A54D62078ED2800DD6B9E /* HLUser.h */,
 				208A54D72078ED2800DD6B9E /* HLUser.m */,
 			);
@@ -272,6 +267,8 @@
 				20DD662A207930260025F75F /* MainViewController.m */,
 				20C9689A2079E912004B7A65 /* WorkSpaceViewController.h */,
 				20C9689B2079E912004B7A65 /* WorkSpaceViewController.m */,
+				20D84F0320A7194100DD6403 /* HLResultViewController.h */,
+				20D84F0420A7194100DD6403 /* HLResultViewController.m */,
 			);
 			path = inference;
 			sourceTree = "<group>";
@@ -434,7 +431,6 @@
 				20525639207282170004EA7A /* LaunchScreen.storyboard in Resources */,
 				20680085207D1B5100C2930D /* hlrelate.storyboard in Resources */,
 				20680087207D1F7800C2930D /* hlinfo.storyboard in Resources */,
-				200C72C7207DCE1A00736B48 /* FindViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,11 +513,11 @@
 				208A54DC2078F02C00DD6B9E /* HLUserTool.m in Sources */,
 				208A54E02078F71B00DD6B9E /* HLInferenceViewController.m in Sources */,
 				2052563C207282170004EA7A /* main.m in Sources */,
-				200C72C6207DCE1A00736B48 /* FindViewController.m in Sources */,
 				20DD662820792D8A0025F75F /* HLLoginTool.m in Sources */,
 				20D84F0220A6D1A300DD6403 /* HLForgetViewController.m in Sources */,
 				208A54D52078EB8F00DD6B9E /* HLLoginViewController.m in Sources */,
 				2052562E207282170004EA7A /* AppDelegate.m in Sources */,
+				20D84F0520A7194100DD6403 /* HLResultViewController.m in Sources */,
 				20C968992079E452004B7A65 /* HLInferenceTool.m in Sources */,
 				2035B21F20848A12008111EC /* testViewController.m in Sources */,
 				208A54EB2079038200DD6B9E /* HLInfoCellData.m in Sources */,
