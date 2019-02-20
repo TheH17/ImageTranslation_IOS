@@ -16,6 +16,9 @@
 
 @property (nonatomic, copy) NSString *info;
 
+/**
+ 增加注释，测试合并
+ */
 + (NSArray<HLRelateData *> *)dataArray;
 
 @end
