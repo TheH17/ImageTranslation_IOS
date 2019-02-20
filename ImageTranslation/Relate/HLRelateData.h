@@ -19,6 +19,6 @@
 /**
  增加注释，测试合并
  */
-+ (NSArray<HLRelateData *> *)dataArray;
++ (NSArray<HLRelateData *> *)dataArray1;
 
 @end
